@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'photos',
     'bootstrap3',
     'photos.apps.PhotosConfig',
     'django.contrib.admin',
@@ -79,8 +78,10 @@ WSGI_APPLICATION = 'Gallery.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'gallery',
+        'USERNAME':'lagat',
+        'PASSWORD':'Access'
     }
 }
 
