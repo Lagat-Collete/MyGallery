@@ -7,20 +7,30 @@ import datetime as dt
 class Category(models.Model):
     name = models.CharField(max_length=20)
 
+    def save_category(self):
+        self.save()
+
+    def delete_category(self):
+        self.delete()
+    
     def __str__(self):
         return self.name
 
-    def save_category(self):
-        self.save()
+    
 
 class Location(models.Model):
     name = models.CharField(max_length=20)
 
+    def save_location(self):
+        self.save()
+
+    def delete_location(self):
+        self.delete()
+    
     def __str__(self):
         return self.name
 
-    def save_location(self):
-        self.save()
+   
 
 
 class Image(models.Model):
@@ -31,13 +41,24 @@ class Image(models.Model):
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     posted_date = models.DateTimeField(auto_now_add=True)
 
+    
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()
+
+    @classmethod
+    def search_by_category(cls,search_term):
+        images = Image.objects.filter(category__icontains=search_term)
+        return images
+
 
 
     def __str__(self):
         return self.name
 
-    def save_Image(self):
-        self.save()
+   
 
 
 
