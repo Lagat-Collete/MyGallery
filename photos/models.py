@@ -17,7 +17,7 @@ class Category(models.Model):
    #method for updating category
     @classmethod
     def update_category(cls,id,name):
-        cls.objects.filter(id=id).update(location_name = name)
+        cls.objects.filter(id=id).update(name = name)
 
     
     def __str__(self):
@@ -36,7 +36,7 @@ class Location(models.Model):
     
     @classmethod
     def update_location(cls,id,name):
-        cls.objects.filter(id=id).update(Location_name = name)
+        cls.objects.filter(id=id).update(name = name)
 
     def __str__(self):
         return self.name

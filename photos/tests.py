@@ -30,6 +30,32 @@ class CategoryTestClass(TestCase):
         self.assertTrue(len(changed_category)>0)
 
 
+class LocationTestClass(TestCase):
+
+    def setUp(self):
+        self.location = Location(name = 'Oceania')
+        
+    def test_instance(self):
+        self.assertTrue(isinstance(self.location,Location))
+        
+    def test_save_method(self):
+        self.location.save_location()
+        location = Location.objects.all()
+        self.assertTrue(len(location) > 0)
+
+    def test_delete_location(self):
+        self.location.save_location()
+        self.location.delete_location()
+        location = Location.objects.all()
+        self.assertTrue(len(location)== 0) 
+       
+    def test_update_location(self):
+        self.location.save_location()
+        self.location.update_location(self.location.id, 'Oceania')
+        changed_location = Location.objects.filter(name ='Oceania')
+        self.assertTrue(len(changed_location) > 0) 
+
+
 class ImageTestClass(TestCase):
     
     def setUp(self):
@@ -55,7 +81,7 @@ class ImageTestClass(TestCase):
         changed_image = Image.objects.filter(name ='Hummingbird.jpg')
         self.assertTrue(len(changed_image) > 0)
 
-        
+
         
 
 
