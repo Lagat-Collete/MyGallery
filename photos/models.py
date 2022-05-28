@@ -1,6 +1,7 @@
 from django.db import models
 from distutils.command.upload import upload
 import datetime as dt
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -12,6 +13,12 @@ class Category(models.Model):
 
     def delete_category(self):
         self.delete()
+
+   #method for updating category
+    @classmethod
+    def update_category(cls,id,name):
+        cls.objects.filter(id=id).update(location_name = name)
+
     
     def __str__(self):
         return self.name
@@ -27,6 +34,10 @@ class Location(models.Model):
     def delete_location(self):
         self.delete()
     
+    @classmethod
+    def update_location(cls,id,name):
+        cls.objects.filter(id=id).update(Location_name = name)
+
     def __str__(self):
         return self.name
 
@@ -34,9 +45,9 @@ class Location(models.Model):
 
 
 class Image(models.Model):
-    image = models.ImageField(upload_to ='images/')
+    image = CloudinaryField('image')
     name = models.CharField(max_length=20)
-    description = models.CharField(max_length=40)
+    description = models.TextField()
     location = models.ForeignKey(Location,on_delete=models.CASCADE)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     posted_date = models.DateTimeField(auto_now_add=True)
@@ -52,8 +63,21 @@ class Image(models.Model):
     def search_by_category(cls,search_term):
         images = Image.objects.filter(category__icontains=search_term)
         return images
+    
+    @classmethod
+    def get_image_by_id(cls,id):
+        image_id = cls.objects.filter(id = id).all()
+        return image_id
 
+    @classmethod
+    def filter_by_location(cls,location):
+        image_location = cls.objects.filters(location=location).all()
+        return image_location
 
+    @classmethod
+    def update_image(cls,id,name,description,location,category):
+        update = cls.objects.filter(id = id).update(name = name, description = description, location = location, category = category)
+        return update
 
     def __str__(self):
         return self.name
