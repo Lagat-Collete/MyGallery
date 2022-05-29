@@ -10,7 +10,11 @@
     {% for image in images %}
     <a href=""></a>
     <img src="{{image.image.url}}" alt="image.name">
+    <h3>{{image.name}}</h3>
+    <p>{{image.category}}</p>
     <p>{{image.location}}</p>
+    <p>{{image.description}}</p>
+    <p>{{image.posted_date}}</p>
     {% endfor %}
   </div>
   <div class="row">

@@ -15,19 +15,18 @@ def index(request):
   categories = Category.objects.all()
   return render(request,'index.html',{'images':images, 'categories':categories})
 
-
 def search_results(request):
-
-    if 'category' in request.GET and request.GET['category']:
-       search_term = request.GET.get('category')
-       searched_images = Image.search_by_category(search_term)
-       message = f"{search_term}"
-
-       return render(request,'search.html',{"message":message, "images": searched_images})
-
+    if 'searchImage' in request.GET and request.GET['searchImage']:
+        category = request.GET.get('searchImage')
+        searched_images =Image.search_by_category(category)
+        locations = Location.objects.all()
+        categories = Category.objects.all()
+        message = f'{category}'
+        category_images = {'locations':locations, 'categories':categories, 'images':searched_images, 'message': message}
+        return render(request, 'search.html', category_images)
     else:
-        message = "You haven't searched for any term"
-        return render(request, 'search.html',{'message':message})
+        message = 'Enter category to search'
+        return render(request, 'search.html', {'message':message})
 
 def category_results(request,category):
   images = Image.filter_by_category(category)
@@ -36,9 +35,11 @@ def category_results(request,category):
   category = {'images':images,'locations':locations,'categories':categories}
   return render(request,'category.html',category)
 
-def location(request, location_name):
-  try:
-    location = Location.objects.get(name =location_name)
-  except ObjectDoesNotExist:
-      raise Http404()
-  return render(request,'location.html',{'location':location})
+def location_results(request,location):
+    images = Image.filter_by_location(location)
+    locations = Location.objects.all()
+    categories = Category.objects.all()
+    location = {'images':images,'locations':locations, 'categories':categories }
+   
+
+    return render(request, 'location.html',location)

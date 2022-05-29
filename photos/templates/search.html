@@ -1,24 +1,48 @@
-{% extends 'base.html' %}
-{% block content %}
-<div class="container">
-  <div class="row">
-    {% if images %}
-    <h2>Found {{ images|length }} of searched term {{message}}</h2>
-    {% else %}
-    <h2>Found 0 images for the search term {{message}}</h2>
-    {% endif %}
+{%extends 'base.html'%} 
 
-  </div>
+{% block content %} 
 
-  <div class="row">
+{{block.super}}
 
-    {% if images %}
-    {% for image in images %}
-      <div class="col-sm-6 col-md-3">
-        <h1>{{image.image}}</h1>
-      </div>
-      {% endfor %}
-      {% endif %}
-  </div>
+<div class="row">
+  {% if images %}
+  <h2>Found {{ images|length }} of searched {{message}} category</h2>
+  {% else %}
+  <h2> Found 0 images for the searched {{message}} category</h2>
+  {% endif %}
 </div>
-{% endblock %}
+<div class="row overflow-auto" style="height:70vh;">
+  {% if images %}
+  {%for image in images%}
+  <div class="col-md-2 col-sm-4 p-0 ">
+    <div class="card-columns" style="padding: 1%; border-radius: 15px;height: fit-content;">
+      <img data-bs-toggle="modal" data-bs-target="#exampleModal{{image.id}}" src="{{image.image.url}}" alt="{{image.name}}" style="object-fit:cover;height: 29vh;border-radius: 3%; margin-bottom: 0;" id="img_poster">
+    </div>
+    <div class="modal-dialog modal-dialog-centered rounded-3">
+      <div class="modal fade" id="exampleModal{{image.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel" style="font-size:large; font-weight:bold;font-family:'Yrsa', serif;color: #115512;">{{image.name}}</h5>
+              <button style="font-weight: 500;font-size: x-large;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</i></button>
+            </div>
+            <div class="modal-body">
+              <img src="{{image.image.url}}" alt="{{image.name}}" class="img-fluid" style="object-fit:cover;text-align: center; width:70vh;height: 58vh;border-radius: 3%;"><br>
+              <p class="text-center img_description" style="line-height: 90%; font-size: small;font-weight: 400;font-family: 'Yrsa', serif; ">{{image.description}}</p><br>
+            </div>
+            <div class=" modal-footer " style="line-height: 50%;">
+              <div class="div" style="color:#EBAD99;font-family:'Yrsa', serif;font-size:small;line-height:0.6;">
+                <span> Category: </span><span class="btn btn-sm btn-outline-success ">{{image.category}}</span>
+                <span> Location: </span><span class="btn btn-sm btn-outline-success ">{{image.location}}</span>
+              </div>
+              <input class="form-control input-lg bg-light " type="text" style=" line-height: 50%;font-size:small; " value="{{image.image.url}} " id="{{image.id}}.url ">
+              <h6 style="color:#115512;font-family:'Yrsa', serif;font-size:small;">Copy the image above to share </h6>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {%endfor%} {% endif %}
+</div>{% endblock %}
