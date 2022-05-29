@@ -1,9 +1,17 @@
+from unicodedata import category
 from django.shortcuts import render
-from .models import Image
+from .models import Category, Image, Location
 
 # Create your views here
 def index(request):
-  return render(request,'index.html')
+  category = request.GET.get('category')
+  if category == None:
+     images = Image.objects.all()
+  else:
+    images = Image.objects.filter(category__name = category)
+
+  categories = Category.objects.all()
+  return render(request,'index.html',{'images':images, 'categories':categories})
 
 
 def search_results(request):
@@ -19,3 +27,9 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'search.html',{'message':message})
 
+def category_results(request,category):
+  images = Image.filter_by_category(category)
+  locations = Location.objects.all()
+  categories = Category.objects.all()
+  category = {'images':images,'locations':locations,'categories':categories}
+  return render(request,'category.html',category)

@@ -23,6 +23,20 @@
 
 <body>
   {% include "navbar.html" %}
+
+   <div class="container">
+     <div class="row">
+      <h2 style="text-align: center ;">These are the available categories</h2>
+      <ul>
+        {% for category in categories %}
+        <li>
+          <a href="/category/{{category.name}}">{{category.name}}</a>
+        </li>
+        {% endfor%}
+      </ul>
+     </div>
+   </div>
+
   {% block content %}
 
   {%endblock%}

@@ -7,7 +7,12 @@
 {% block content %}
 {{ block.super }}
 
-<div class="container">
+    {% for image in images %}
+    <a href=""></a>
+    <img src="{{image.image.url}}" alt="image.name">
+    <p>{{image.location}}</p>
+    {% endfor %}
+  </div>
   <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">

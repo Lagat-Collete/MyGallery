@@ -1,7 +1,7 @@
 from django.db import models
 from distutils.command.upload import upload
 import datetime as dt
-from cloudinary.models import CloudinaryField
+from cloudinary.models import CloudinaryField 
 
 # Create your models here.
 
