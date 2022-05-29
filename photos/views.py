@@ -1,6 +1,8 @@
 from unicodedata import category
+from django.http import Http404
 from django.shortcuts import render
 from .models import Category, Image, Location
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here
 def index(request):
@@ -33,3 +35,10 @@ def category_results(request,category):
   categories = Category.objects.all()
   category = {'images':images,'locations':locations,'categories':categories}
   return render(request,'category.html',category)
+
+def location(request, location_name):
+  try:
+    location = Location.objects.get(name =location_name)
+  except ObjectDoesNotExist:
+      raise Http404()
+  return render(request,'location.html',{'location':location})
