@@ -19,3 +19,10 @@ color: green;
   background-color: #222222;
 }
 
+ a {
+  text-decoration: none;
+  color: black;
+}
+li {
+  display: inline;
+}

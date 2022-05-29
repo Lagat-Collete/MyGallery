@@ -24,22 +24,27 @@
 <body>
   {% include "navbar.html" %}
 
-   <div class="container">
-     <div class="row">
+  <div class="container">
       <h2 style="text-align: center ;">These are the available categories</h2>
-      <ul>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
         {% for category in categories %}
-        <li>
-          <a href="/category/{{category.name}}">{{category.name}}</a>
-        </li>
+        
+            <a style="text-align: center; padding: 5px;" href="/category/{{category.name}}">{{category.name}}</a>
+          
         {% endfor%}
-      </ul>
-     </div>
-   </div>
-
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+     <br>
+      
+ <div class="container">
   {% block content %}
 
   {%endblock%}
+ </div>
   {% include "footer.html" %}
     <!-- script -->
   {% bootstrap_javascript jquery='full' %}

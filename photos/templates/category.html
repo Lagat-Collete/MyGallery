@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load bootstrap4 %}
+
+{% load static %}
+
+{% block content %}
+{{ block.super }}
+
+<div class="container">
+  <div class="row">
+
+   {% if images %}
+   {% for image in images %}
+   <div class="card">
+     <img src="{{image.image.url}}" alt=""{{image.name}}>
+     <h4>{{image.name}}</h4>
+     <p>{{image.description}}</p>
+     <p>Category: {{image.category}}</p>
+     <p>Location: {{image.location}}</p>
+   </div>
+   {% endfor %}
+   {% endif%}
+
+  </div>
+</div>
+
+
+{% endblock %}
