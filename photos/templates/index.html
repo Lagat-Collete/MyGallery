@@ -1,44 +1,52 @@
-{% extends 'base.html' %}
-
-{% load bootstrap4 %}
-
-{% load static %}
-
+{% extends 'base.html' %} {% load bootstrap4 %} {% load static %} 
 {% block content %}
-{{ block.super }}
+{% for image in images %}
 
-   
-<div class="row">
-  {%for image in images %}
-  <div class="col-md-3 col-sm-4 p-0 m-4">
-    <div class="card-columns" style="padding: 1%; border-radius: 10px;height: fit-content;">
-      <img data-bs-toggle="modal" data-bs-target="#exampleModal{{image.id}}" src="{{image.image.url}}" alt="{{image.name}}" style="object-fit:cover;height: 29vh;border-radius: 3%; margin-bottom: 0;" id="img_poster">
-    </div>
-    <div class="modal-dialog modal-dialog-centered rounded-3">
-      <div class="modal fade" id="exampleModal{{image.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel" style="font-size:large; font-weight:bold;font-family:'Yrsa', serif;color: #115512;">{{image.name}}</h5>
-              <button style="font-weight: 500;font-size: x-large;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</i></button>
-            </div>
-            <div class="modal-body">
-              <img src="{{image.image.url}}" alt="{{image.name}}" class="img-fluid" style="object-fit:cover;text-align: center; width:70vh;height: 58vh;border-radius: 3%;"><br>
-              <p class="text-center img_description" style="line-height: 90%; font-size: small;font-weight: 400;font-family: 'Yrsa', serif; ">{{image.description}}</p><br>
-            </div>
-            <div class=" modal-footer " style="line-height: 50%;">
-              <div class="div" style="color:#EBAD99;font-family:'Yrsa', serif;font-size:small;line-height:0.6;">
-                <span> Category: </span><span class="btn btn-sm btn-outline-success rounded-pill">{{image.category}}</span>
-                <span> Location: </span><span class="btn btn-sm btn-outline-success rounded-pill">{{image.location}}</span>
-              </div>
-              <input class="form-control input-lg bg-light " type="text" style=" line-height: 50%;font-size:small; " value="{{image.image.url}} " id="{{image.id}}.url ">
-              <h6 style="color:#115512;font-family:'Yrsa', serif;font-size:small;">Copy the image above to share </h6>
-            </div>
-          </div>
-        </div>
+
+
+  <div class="col-md-3 col-sm-4 d-flex">
+  <div class="card-columns" style="padding: 1%; border-radius: 10px; height:fit-content;">
+  <a href="" data-toggle="modal" data-target="#exampleModal{{image.id}}" >
+    <img src="{{image.image.url}}"
+      alt="{{image.name}}" style="object-fit: cover; margin-bottom: 0" /></a>
+  </div>
+
+
+
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal{{image.id}}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3><span style="font-style: italic; color:green">{{image.name}}</h3></span>
+        <img src="{{image.image.url}}" alt="{{image.name}}" />
+        <h3>Description: <br>{{image.description}}</h3>
+        <h3>Category: {{image.category}}</h3>
+        <h3> Location: <span style="font-style: italic; color:black"> {{image.location}}</h3></span>
+        <h3> Date: <span style="font-style: italic; color:black">{{image.posted_date}}</h3></span>
+        <p>
+          Photo Url:<input type="text" value="{{image.image.url}}" class="btn btn-success form-control photoUrl" />
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
       </div>
     </div>
   </div>
-  {% endfor %}
+</div>
+  </div>
 
+
+ 
+
+
+{% endfor %}
 {% endblock %}
+
+

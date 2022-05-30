@@ -26,3 +26,26 @@ color: green;
 li {
   display: inline;
 }
+
+img {
+  width: 300px;
+  height: 300px;
+}
+p {
+  
+  text-align: justtify;
+  color: grey;
+  font-size: 10px;
+  font-family: 'open sans condensed', 'HelveticaNeue', 'Helvetica Neue', 
+  'Helvetica-Neue', Helvetica, Arial, sans-serif;
+}
+
+h3{
+  color: #0a0a0a;
+  letter-spacing: 1px;
+  font-size: 18px;
+  font-weight: 400px;
+  display: block;
+  font-family: 'open sans condensed', 'HelveticaNeue', 'Helvetica Neue', 
+  'Helvetica-Neue', Helvetica, Arial, sans-serif;
+}
