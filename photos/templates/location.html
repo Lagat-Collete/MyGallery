@@ -7,46 +7,43 @@
 {% block content %}
 {{ block.super }}
 
-
-  {% if images %} 
-  {% for image in images %}
-
-  <div class="col-md-3 mt-2 d-inline-block">
-    <div class="card p-1 m-2">
+<div class="container">
+  <div class="row">
+    {% if images %}{% for image in images %}
+    <div class="col-md-4 p-1 ">
     <a href="" data-toggle="modal" data-target="#exampleModal{{image.id}}" >
-      <img src="{{image.image.url}}"
-        alt="{{image.name}}" style="object-fit: cover; margin-bottom: 0" /></a>
+      <img class="rounded" src="{{image.image.url}}"
+        alt="{{image.name}}" /></a>
     </div>
-  
-  <div class="modal" tabindex="-1" role="dialog" id="exampleModal{{image.id}}">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <h3><span style="font-style: italic; color:green">{{image.name}}</h3></span>
-          <img src="{{image.image.url}}" alt="{{image.name}}" />
-          <h3>Description: <br>{{image.description}}</h3>
-          <h3>Category: {{image.category}}</h3>
-          <h3> Location: <span style="font-style: italic; color:black"> {{image.location}}</h3></span>
-          <h3> Date: <span style="font-style: italic; color:black">{{image.posted_date}}</h3></span>
-          <p>
-            Photo Url:<input type="text" value="{{image.image.url}}" class="btn btn-success form-control photoUrl" />
-          </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
-          </button>
+    <div class="modal" tabindex="-1" role="dialog" id="exampleModal{{image.id}}">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h3><span style="font-style: italic; color:green">{{image.name}}</h3></span>
+            <img src="{{image.image.url}}" alt="{{image.name}}" />
+            <h3>Description: <br><span id="span">{{image.description}}</span></h3>>
+            <h3>Category: {{image.category}}</h3>
+            <h3> Location: <span style="font-style: italic; color:black"> {{image.location}}</h3></span>
+            <h3> Date: <span style="font-style: italic; color:black">{{image.posted_date}}</h3></span>
+            <p>
+              Photo Url:<input type="text" value="{{image.image.url}}" class="btn btn-success form-control photoUrl" />
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>
+    {% endfor %}
+    {% endif %}
   </div>
-    </div>
-  {%endfor%} 
-  {% endif %}
-{% endblock %}
-
+  </div>
+  {% endblock%}

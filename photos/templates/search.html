@@ -4,20 +4,48 @@
 
 {{block.super}}
 
-<div class="row">
+<div class="container">
   {% if images %}
   <h2>Found {{ images|length }} of searched {{message}} category</h2>
   {% else %}
   <h2> Found 0 images for the searched {{message}} category</h2>
   {% endif %}
-</div>
-<div class="row">
-  {% if images %}
-  {%for image in images%}
-  <div class="col-md-2 col-sm-4 p-0 ">
-    <div class="card-columns" style="padding: 1%; border-radius: 10px;height: fit-content;">
-      <img data-bs-toggle="modal" data-bs-target="#exampleModal{{image.id}}" src="{{image.image.url}}" alt="{{image.name}}" style="object-fit:cover;" id="img_poster">
+  <div class="row">
+    {% if images %}{% for image in images %}
+    <div class="col-md-4 p-1 ">
+    <a href="" data-toggle="modal" data-target="#exampleModal{{image.id}}" >
+      <img class="rounded" src="{{image.image.url}}"
+        alt="{{image.name}}" /></a>
     </div>
-    
-  {%endfor%} {% endif %}
-</div>{% endblock %}
+    <div class="modal" tabindex="-1" role="dialog" id="exampleModal{{image.id}}">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h3><span style="font-style: italic; color:green">{{image.name}}</h3></span>
+            <img src="{{image.image.url}}" alt="{{image.name}}" />
+            <h3>Description: <br>{{image.description}}</h3>
+            <h3>Category: {{image.category}}</h3>
+            <h3> Location: <span style="font-style: italic; color:black"> {{image.location}}</h3></span>
+            <h3> Date: <span style="font-style: italic; color:black">{{image.posted_date}}</h3></span>
+            <p>
+              Photo Url:<input type="text" value="{{image.image.url}}" class="btn btn-success form-control photoUrl" />
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+  </div>
+  {% endblock%}
