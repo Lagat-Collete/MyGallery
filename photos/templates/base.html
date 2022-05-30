@@ -36,7 +36,7 @@
       <div class="col-md-6">
       <h2>Locations</h2>
       {% for location in locations%}
-      <a href="/location/{{location.name}}">{{location.name}}</a>
+      <a style="text-align: center; padding: 3px; color: rgb(1, 51, 1);" href="/location/{{location.name}}">{{location.name}}</a>
       {% endfor %}
       </div>
     </div>
@@ -50,6 +50,7 @@
   {%endblock%}
  </div>
   {% include "footer.html" %}
+
     <!-- script -->
   {% bootstrap_javascript jquery='full' %}
   {% block scripts %}
