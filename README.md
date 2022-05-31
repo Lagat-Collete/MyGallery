@@ -7,7 +7,7 @@ This is an application that will display my photos  from various categories
 
 ### Project setup instructions
 1. Open your terminal
-2. use git clone command and paste this [link](https://github.com/Lagat-Collete/MyGallery.git)
+2. use git clone command and paste this link `https://github.com/Lagat-Collete/MyGallery.git`
 3. Open in code editor of your choice
 4. Install the requirements- `pip install -r requirements.txt`
 5. Create virtual environment and activate it
