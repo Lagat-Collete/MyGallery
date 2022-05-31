@@ -16,7 +16,7 @@ This is an application that will display my photos  from various categories
 
 
 ### Usage Instruction
- 1. Open your browser (preferably google chrome and active internet connection is required.) and paste the link below; [ ] or to acess it.
+ 1. Open your browser (preferably google chrome and active internet connection is required.) click this [link](https://lagat-gallery.herokuapp.com/)
  2. Depending on your needs you can easily maneuver around the page.
  3. The page provides well label guidance to make usage easily understandable and interative.
  
@@ -34,7 +34,7 @@ This is an application that will display my photos  from various categories
 - A browser in the computer
 
 ## Known Bugs
- So far not working as expected.
+ So far not aware of any.
 
 ## Technologies Used
 - Python3 - Django for framework
