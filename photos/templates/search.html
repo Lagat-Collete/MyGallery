@@ -2,16 +2,18 @@
 
 {% block content %} 
 
-{{block.super}}
-
-<div class="container">
-  {% if images %}
-  <h2>Found {{ images|length }} of searched {{message}} category</h2>
-  {% else %}
-  <h2> Found 0 images for the searched {{message}} category</h2>
-  {% endif %}
+<div class="container" style="min-height: 80vh;">
+ 
   <div class="row">
-    {% if images %}{% for image in images %}
+
+    {% if images %}
+    <h2>Found {{images|length}} of searched {{message}} category</h2>
+    <p>hELLO CATEGORIES</p>
+    {% else %}
+    <h2> Found 0 images for the searched {{message}} category</h2>
+    {% endif %}
+
+    {% if images %} {% for image in images %}
     <div class="col-md-4 p-1 ">
     <a href="" data-toggle="modal" data-target="#exampleModal{{image.id}}" >
       <img class="rounded" src="{{image.image.url}}"

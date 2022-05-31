@@ -16,8 +16,8 @@ def index(request):
   return render(request,'index.html',{'images':images, 'categories':categories})
 
 def search_results(request):
-    if 'searchImage' in request.GET and request.GET['searchImage']:
-        category = request.GET.get('searchImage')
+    if 'category' in request.GET and request.GET['category']:
+        category = request.GET.get('category')
         searched_images =Image.search_by_category(category)
         locations = Location.objects.all()
         categories = Category.objects.all()

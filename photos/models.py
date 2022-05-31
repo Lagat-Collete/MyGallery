@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.db import models
 from distutils.command.upload import upload
 import datetime as dt
