@@ -2,7 +2,12 @@
 This is an application that will display my photos  from various categories
 
 ### latest version  May/20222
-![baringo](https://user-images.githubusercontent.com/94686368/171234630-5dbf0d81-d8d2-435d-8e9e-d62c474ef784.jpg)
+## Home page
+![Screenshot from 2022-05-31 21-12-57](https://user-images.githubusercontent.com/94686368/171256501-ea82a75e-fe94-4f1e-b68b-f5bd396e5f09.png)
+
+## Image description display modal
+
+![Screenshot from 2022-05-31 20-55-39](https://user-images.githubusercontent.com/94686368/171256739-335b6457-2d1f-4acc-a3a7-a5f60d29d7eb.png)
 
 ### By : **Jepngetich Lagat**
 
